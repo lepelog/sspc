@@ -1,7 +1,7 @@
 push
 
 # position store
-liw 3, 0x805789EC       # static ptr to Link
+liw 3, 0x80576ECC       # static ptr to Link
 lwz 4, 0 (3)            # r4 has Link (or nullptr)
 liw 3, 0x8095545C       # r3 has cf (currentFiles), i.e. FA - 0x8
 cmpwi r4, 0             # if r4 is nullptr

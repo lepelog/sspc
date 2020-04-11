@@ -27,6 +27,8 @@ validator_expansion = re.compile(r'^{([0-9a-z\-]+).asm}$')  # regex to validate 
 names = []
 outputs = []
 for filename in os.listdir('src'):
+    if filename != 'spawn.gecko':
+        continue
     if filename.endswith(".gecko"):
         text = ''
         with open('src/' + filename, 'r') as srcfile:
@@ -60,7 +62,7 @@ for filename in os.listdir('src'):
 
 if outputs:
     if g:
-        with open('build/sspc.gct', 'wb') as gfile:
+        with open('build/SOUP01.gct', 'wb') as gfile:
             gfile.write(bytes.fromhex('00d0c0de00d0c0de'))
             for code in outputs:
                 gfile.write(bytes.fromhex(''.join(code.split())))

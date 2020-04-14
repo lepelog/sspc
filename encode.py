@@ -62,7 +62,7 @@ for filename in os.listdir('src'):
 
 if outputs:
     if g:
-        with open('build/SOUP01.gct', 'wb') as gfile:
+        with open('build/sspc.gct', 'wb') as gfile:
             gfile.write(bytes.fromhex('00d0c0de00d0c0de'))
             for code in outputs:
                 gfile.write(bytes.fromhex(''.join(code.split())))

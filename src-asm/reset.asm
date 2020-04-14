@@ -1,6 +1,6 @@
 push
   # setSpawn (manually write data to master spawn object)
-liw 3, 0x805B4FE0       # master spawn object
+liw 3, 0x805B4DE0       # master spawn object
 liw 4, 0x46303030       # location
 li 5, 0x0               # location ctd. (null terminator)
 li 6, 0x1c              # layer

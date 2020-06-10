@@ -1,5 +1,6 @@
 import re
 import xml.etree.ElementTree as ET
+import yaml
 
 class AliasList:
     def __init__(self):
@@ -68,8 +69,24 @@ def getAliasListFromXml(xmlPath, errPrint):
             errPrint(f'Unknown node type in alias xml: {node.tag}')
     return aliasList
 
+def getAliasListFromYaml(path, errPrint):
+    aliasList = AliasList()
+    with open(path, 'r') as f:
+        root = yaml.safe_load(f)
+    aliasList.games = root['games']
+    for alias, addresses in root['addresses'].items():
+        # single address is a string, multiple addresses are key(game) value(address) pairs
+        if type(addresses) == str:
+            # addresses for all games have * identifier
+            aliasList.add(alias, '*', addresses)
+        else:
+            for gameid, address in addresses.items():
+                aliasList.add(alias, gameid, address)
+    return aliasList
+
 aliasparsers = {
-    'xml': getAliasListFromXml
+    'xml': getAliasListFromXml,
+    'yaml': getAliasListFromYaml,
 }
 
 def getAliasList(path, errPrint):

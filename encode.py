@@ -37,7 +37,7 @@ for arg in sys.argv[1:-1]:
         exit()
 
 doPrint(f'== encode.py {commandsText} ==')
-aliasList = getAliasList('src/aliases.xml', doPrint)
+aliasList = getAliasList('src/aliases.yaml', doPrint)
 gameList = aliasList.getGameList(gameFilter)
 
 def ensuredir(path):
@@ -51,7 +51,10 @@ def compileAsm(gamePath, gameMacro):
     with open(f'build-asm/{gamePath}/aliases.asm', 'w') as aliasOut:
         for macro in aliasList.getMacrosForGame(gameMacro):
             aliasOut.write(macro + '\n')
-    os.system(f'"C:/Program Files/Git/git-bash.exe" -l assemble.sh {gamePath}')
+    if sys.platform == 'win32':
+        os.system(f'"C:/Program Files/Git/git-bash.exe" -l assemble.sh {gamePath}')
+    else:
+        os.system(f'PYCMD="python" bash assemble.sh {gamePath}')
 
 if a:
     for game in gameList:

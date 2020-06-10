@@ -1,0 +1,15 @@
+JP, PAL1.1, PAL1.0
+# 805789EC, 80576ECC, 80576D2C    [4B]    link ptr
+# 8059CF8C, 8059B48C, 8059B28C	[2B]	input buffer
+# 805789F4, 80576ED4, 80576D34	[4B]	ptr to Reloader
+# 805789FD, 80576EDD, 80576D3D    [1B]    reload type (for Reloader)
+# 805B6B0C, 805B4FE0, 805B4DE0         master spawn object
+# 805B6B0C, 805B4FE0, 805B4DE0	[4B]	location (text)
+# 805B6B10, 805B4FE4, 805B4DE4	[4B]	location ctd. (text)
+# 805B6B2F, 805B5003, 805B4E03	[1B]	layer
+# 805B6B30, 805B5004, 805B4E04	[1B]	entrance
+# 805B6B32, 805B5006, 805B4E06    [1B]    trial yay or nay?
+# 8095545c, 8095545c, 8095545c            current files
+# code seems to be fine as well? (mostly)
+# 800C0740, 800C0570, 800C04F0       loadToCurrent()
+# addresses like 809xxxxx seems to be consistent across versions

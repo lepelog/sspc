@@ -1,3 +1,5 @@
 build*
 pyiiasmh
 scrap
+
+__pycache__

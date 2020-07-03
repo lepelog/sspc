@@ -15,6 +15,11 @@ def assemblesinglecode(filename, aliases, versionfilter, buildfolder, srcfolder)
         if not os.path.exists(path): os.mkdir(path)
     ensuredir(srcfolder)
     ensuredir(buildfolder)
+    # python commands differ between os
+    if os.sys.platform == 'win32':
+        pycmd = "py -2"
+    else:
+        pycmd = "python"
     for game in aliases.getGameList(versionfilter):
         ensuredir(buildfolder + '/' + game)
     ensuredir(f'{buildfolder}/.free')
@@ -27,7 +32,7 @@ def assemblesinglecode(filename, aliases, versionfilter, buildfolder, srcfolder)
             with open(f'../{srcfolder}/{filename}.asm', 'r') as f:
                 contents.append(f.read())
             tmpfile.write('\n'.join(contents) + '\n')
-        output = subprocess.Popen(f'py -2 pyiiasmh_cli.py -a -codetype C0 ../{buildfolder}/tmp.asm'.split(), stdout=subprocess.PIPE).communicate()
+        output = subprocess.Popen(f'{pycmd} pyiiasmh_cli.py -a -codetype C0 ../{buildfolder}/tmp.asm'.split(), stdout=subprocess.PIPE).communicate()
         with open(f'../{buildfolder}/{game}/{filename}.gecko', 'w') as outfile:
             for line in output[0].decode('utf-8').strip().split('\n'):
                 outfile.write(line.strip() + '\n')

@@ -1,4 +1,4 @@
 build*
-compiler
 pyiiasmh
 scrap
+__pycache__
